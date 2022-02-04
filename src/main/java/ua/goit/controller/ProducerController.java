@@ -1,5 +1,7 @@
 package ua.goit.controller;
 
+import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ua.goit.models.Producer;
@@ -15,14 +17,16 @@ public class ProducerController {
 
     private final ProducerService producerService;
 
+//    @Operation(description = "hhh")
     @GetMapping//(value = {"producers"})
     public List<Producer> findAll(){
         return producerService.findAll();
     }
 
-    @GetMapping({"/{id}", "/"})
+    @GetMapping({"/{id}"})
     public Optional<Producer> findById
-            (@PathVariable(required = false, name = "id") Long id){
+            (@ApiParam(required = true, defaultValue = "2")
+             @PathVariable(required = false, name = "id") Long id){
             return producerService.findById(id);
     }
 

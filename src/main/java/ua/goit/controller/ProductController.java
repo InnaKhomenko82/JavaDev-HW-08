@@ -22,7 +22,7 @@ public class ProductController {
         return productService.findAll();
     }
 
-    @GetMapping({"/{id}", "/"})
+    @GetMapping({"/{id}"})
     public Optional<Product> findById(@PathVariable(required = false, name = "id")
                                       Optional<Long> id){
         if (id.isPresent()) {
