@@ -1,9 +1,10 @@
 package ua.goit.controller;
 
 import io.swagger.annotations.ApiParam;
-import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 import ua.goit.models.Producer;
 import ua.goit.service.ProducerService;
 
@@ -17,26 +18,41 @@ public class ProducerController {
 
     private final ProducerService producerService;
 
-//    @Operation(description = "hhh")
     @GetMapping//(value = {"producers"})
-    public List<Producer> findAll(){
-        return producerService.findAll();
+    public ModelAndView findAll(ModelAndView model){
+        List<Producer> producers = producerService.findAll();
+        model.addObject("producers", producers);
+        model.setViewName("producer/producers");
+        return model;
     }
 
     @GetMapping({"/{id}"})
-    public Optional<Producer> findById
+    public ModelAndView findById
             (@ApiParam(required = true, defaultValue = "2")
-             @PathVariable(required = false, name = "id") Long id){
-            return producerService.findById(id);
+             @PathVariable(required = false, name = "id")
+                     Long id, ModelAndView model){
+        Optional<Producer> producer = producerService.findById(id);
+        model.addObject("producer", producer.get());
+        model.setViewName("producer/producer");
+        return model;
     }
 
-    @PostMapping
-    public Producer save(@RequestBody Producer producer){
-        return producerService.save(producer);
+    @PostMapping("new")
+    public String add(ModelAndView model, Producer producer){
+        model.addObject("new", true);
+        producerService.save(producer);
+        return "new";
     }
 
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable(name = "id") Long id){
+    @PutMapping("/{id}")
+    public RedirectView save(@RequestBody Producer producer){
+        producerService.save(producer);
+        return new RedirectView("producer/producers");
+    }
+
+    @GetMapping({"deleteId =","/{id}"})
+    public void delete(@PathVariable Long id){
         producerService.deleteById(id);
+        new RedirectView("producer/producers");
     }
 }

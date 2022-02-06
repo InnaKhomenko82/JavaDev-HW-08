@@ -2,8 +2,10 @@ package ua.goit.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import ua.goit.models.Producer;
 import ua.goit.models.Product;
-import ua.goit.repository.ProductRepository;
+import ua.goit.service.ProducerService;
 import ua.goit.service.ProductService;
 
 import java.util.List;
@@ -15,20 +17,26 @@ import java.util.Optional;
 public class ProductController {
 
     private final ProductService productService;
-    private final ProductRepository productRepository;
+    private final ProducerService producerService;
 
     @GetMapping//(value = {"products"})
-    public List<Product> findAll(){
-        return productService.findAll();
+    public ModelAndView findAll(ModelAndView model){
+        List<Product> products = productService.findAll();
+        model.addObject("products", products);
+        model.setViewName("product/products");
+        return model;
     }
 
     @GetMapping({"/{id}"})
-    public Optional<Product> findById(@PathVariable(required = false, name = "id")
-                                      Optional<Long> id){
-        if (id.isPresent()) {
-            return productService.findById(id.get());
-        }
-        else return productService.findById(2L);
+    public ModelAndView findById
+            (@PathVariable(required = false, name = "id")
+                     Long id, ModelAndView model){
+        List<Producer> producers = producerService.findAll();
+        Optional<Product> product = productService.findById(id);
+            model.addObject("product", product.get());
+            model.addObject("listProducer",producers);
+            model.setViewName("product/product");
+        return model;
     }
 
     @PostMapping
