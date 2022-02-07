@@ -32,7 +32,7 @@
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group me-2" role="group" aria-label="Second group">
                                 <a href="/product/<c:out value = '${product.id}'/>" type="button" class="btn btn-warning">📝</a>
-                                <a href="/product?deleteId=<c:out value = '${product.id}'/>" type="button" class="btn btn-danger">🗑</a>
+                                <a href="/product/delete=<c:out value = '${product.id}'/>" type="button" class="btn btn-danger">🗑</a>
                             </div>
                         </div>
                     </td>

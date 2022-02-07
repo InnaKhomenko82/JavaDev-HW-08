@@ -50,9 +50,9 @@ public class ProducerController {
         return new RedirectView("producer/producers");
     }
 
-    @GetMapping({"deleteId =","/{id}"})
-    public void delete(@PathVariable Long id){
+    @GetMapping("delete={id}")
+    public RedirectView delete(@PathVariable Long id){
         producerService.deleteById(id);
-        new RedirectView("producer/producers");
+        return new RedirectView("");
     }
 }

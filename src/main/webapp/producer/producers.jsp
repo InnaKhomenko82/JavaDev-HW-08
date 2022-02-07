@@ -29,7 +29,7 @@
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group me-2" role="group" aria-label="Second group">
                                 <a href="/producer/<c:out value = '${producer.id}'/>" type="button" class="btn btn-warning">📝</a>
-                                <a href="/producer?delete=<c:out value = '${producer.id}'/>" type="button" class="btn btn-danger">🗑</a>
+                                <a href="/producer/delete=<c:out value = '${producer.id}'/>" type="button" class="btn btn-danger">🗑</a>
                             </div>
                         </div>
                     </td>

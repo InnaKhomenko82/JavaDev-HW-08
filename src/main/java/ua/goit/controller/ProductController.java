@@ -3,6 +3,7 @@ package ua.goit.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 import ua.goit.models.Producer;
 import ua.goit.models.Product;
 import ua.goit.service.ProducerService;
@@ -42,5 +43,11 @@ public class ProductController {
     @PostMapping
     public Product save(@RequestBody Product product){
         return productService.save(product);
+    }
+
+    @GetMapping("delete={id}")
+    public RedirectView delete(@PathVariable Long id){
+        productService.deleteById(id);
+        return new RedirectView("");
     }
 }
