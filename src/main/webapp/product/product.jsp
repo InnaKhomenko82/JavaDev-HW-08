@@ -46,7 +46,7 @@
             <label for="producer" class="form-label">producer</label>
             <select class="form-select"
                     aria-label="Default select example"
-                    value="${product.producer}"
+                    value="${product.producer.id}"
                     id="producer">
                 <option selected disabled>${product.producer.name}</option>
                 <c:forEach var="element" items="${listProducer}">
@@ -55,7 +55,7 @@
                             <option selected value='${element}'>${element.name}</option>
                         </c:when>
                         <c:otherwise>
-                            <option value='${element}'>${element.name}</option>
+                            <option value='${element.id}'>${element.name}</option>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>

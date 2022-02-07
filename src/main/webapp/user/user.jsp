@@ -67,8 +67,12 @@
 </div>
 <script>
     let id = document.getElementById('id');
-    let skillsField = document.getElementById('skillsField');
-    let skillsLevel = document.getElementById('skillsLevel');
+    let email = document.getElementById('email');
+    let password = document.getElementById('password');
+    let firstName = document.getElementById('firstName');
+    let lastName = document.getElementById('lastName');
+    let role = document.getElementById('role');
+
     function save() {
         let body = {
             <% if(user.getId() != null) {%>

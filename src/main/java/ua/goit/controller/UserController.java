@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import ua.goit.models.Role;
 import ua.goit.models.User;
 import ua.goit.service.UserService;
 import ua.goit.utils.HandleBodyUtil;
