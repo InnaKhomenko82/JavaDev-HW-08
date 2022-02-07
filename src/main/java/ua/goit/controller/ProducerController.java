@@ -1,13 +1,15 @@
 package ua.goit.controller;
 
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import ua.goit.models.Producer;
 import ua.goit.service.ProducerService;
+import ua.goit.utils.HandleBodyUtil;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +20,7 @@ public class ProducerController {
 
     private final ProducerService producerService;
 
-    @GetMapping//(value = {"producers"})
+    @GetMapping
     public ModelAndView findAll(ModelAndView model){
         List<Producer> producers = producerService.findAll();
         model.addObject("producers", producers);
@@ -28,8 +30,7 @@ public class ProducerController {
 
     @GetMapping({"/{id}"})
     public ModelAndView findById
-            (@ApiParam(required = true, defaultValue = "2")
-             @PathVariable(required = false, name = "id")
+            (@PathVariable(required = false, name = "id")
                      Long id, ModelAndView model){
         Optional<Producer> producer = producerService.findById(id);
         model.addObject("producer", producer.get());
@@ -37,16 +38,26 @@ public class ProducerController {
         return model;
     }
 
-    @PostMapping("new")
-    public String add(ModelAndView model, Producer producer){
-        model.addObject("new", true);
-        producerService.save(producer);
-        return "new";
+    @GetMapping("new")
+    public ModelAndView newItem (Producer producer, ModelAndView model){
+        model.addObject("producer", producer);
+        model.setViewName("producer/producer");
+        return model;
+    }
+
+    @PostMapping
+    public RedirectView post(HttpServletRequest req) throws IOException {
+        System.out.println("post");
+        HandleBodyUtil.getModelFromStream(req.getInputStream(), Producer.class)
+                .ifPresent(producerService::save);
+        return new RedirectView("producer/producers");
     }
 
     @PutMapping("/{id}")
-    public RedirectView save(@RequestBody Producer producer){
-        producerService.save(producer);
+    public RedirectView put(HttpServletRequest req, @PathVariable Long id) throws IOException {
+        System.out.println("put");
+        HandleBodyUtil.getModelFromStream(req.getInputStream(), Producer.class)
+                .ifPresent(producerService::save);
         return new RedirectView("producer/producers");
     }
 

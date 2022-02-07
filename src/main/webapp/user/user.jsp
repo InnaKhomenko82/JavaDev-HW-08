@@ -52,8 +52,8 @@
             <select class="form-select" aria-label="Default select example"
                     value="${user.role}" id="role" placeholder="Select role from menu">
                 <option selected disabled>${user.role}</option>
-                <option value="USER">user</option>
-                <option value="ADMIN">admin</option>
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
             </select>
         </div>
     </div>

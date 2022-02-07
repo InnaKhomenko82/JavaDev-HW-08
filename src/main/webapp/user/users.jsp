@@ -45,7 +45,7 @@
         </table>
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group me-2" role="group" aria-label="Second group">
-                <a href="/product/new" type="button" class="btn btn-primary">+</a>
+                <a href="/user/new" type="button" class="btn btn-primary">+</a>
             </div>
         </div>
     </div>

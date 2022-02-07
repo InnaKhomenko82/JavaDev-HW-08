@@ -55,7 +55,7 @@
                             <option selected value='${element}'>${element.name}</option>
                         </c:when>
                         <c:otherwise>
-                            <option value='${element.id}'>${element.name}</option>
+                            <option value='${element}'>${element.name}</option>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
@@ -82,6 +82,8 @@
             <% if(product.getId() != null) {%>
             id: id.value, <% } %>
             name: name.value,
+            price: price.value,
+            producer: producer.value,
         }
         <% if(product.getId() == null) {%>
         let url = '/product';
