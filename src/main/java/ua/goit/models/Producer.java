@@ -1,6 +1,8 @@
 package ua.goit.models;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -13,17 +15,19 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "producers")
-public class Producer implements BaseEntity<Long>{
+public class Producer implements BaseEntity<UUID>{
 
     private static final long serialVersionUID = -475982250350685554L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", columnDefinition = "VARCHAR(36)")
+    @Type(type = "uuid-char")
+    private UUID id;
 
     @NotEmpty
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -8,11 +8,11 @@ import ua.goit.models.User;
 import java.util.UUID;
 
 @Service
-public class UserService extends BaseService<User, Long>{
+public class UserService extends BaseService<User, UUID>{
 
     private final BCryptPasswordEncoder encoder;
 
-    public UserService(CrudRepository<User, Long> repository, BCryptPasswordEncoder encoder) {
+    public UserService(CrudRepository<User, UUID> repository, BCryptPasswordEncoder encoder) {
         super(repository);
         this.encoder = encoder;
     }

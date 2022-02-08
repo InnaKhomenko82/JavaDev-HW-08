@@ -7,9 +7,9 @@ import ua.goit.models.Product;
 import java.util.UUID;
 
 @Service
-public class ProductService extends BaseService<Product, Long>{
+public class ProductService extends BaseService<Product, UUID>{
 
-    public ProductService(CrudRepository<Product, Long> repository) {
+    public ProductService(CrudRepository<Product, UUID> repository) {
         super(repository);
     }
 }

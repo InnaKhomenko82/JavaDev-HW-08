@@ -28,7 +28,7 @@ public class ProducerController {
 
     @GetMapping({"/{id}"})
     public ModelAndView findById(@PathVariable(required = false, name = "id")
-                                             Long id, ModelAndView model){
+                                             UUID id, ModelAndView model){
         Optional<Producer> producer = producerService.findById(id);
         model.addObject("producer", producer.get());
         model.setViewName("producer/producer");
@@ -49,7 +49,7 @@ public class ProducerController {
     }
 
     @GetMapping("delete={id}")
-    public RedirectView delete(@PathVariable Long id){
+    public RedirectView delete(@PathVariable UUID id){
         producerService.deleteById(id);
         return new RedirectView("");
     }

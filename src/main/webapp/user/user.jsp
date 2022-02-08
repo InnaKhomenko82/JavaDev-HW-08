@@ -19,23 +19,23 @@
         <div class="row">
             <div class="mb-3">
                 <label for="id" class="form-label">id</label>
-                <input type="text" disabled name="id" id="id" placeholder="${user.id}" value="${user.id}">
+                <input type="text" class="form-control" disabled name="id" id="id" placeholder="${user.id}" value="${user.id}">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">e-mail</label>
-                <input type="text" name="email" id="email" placeholder="${user.email}" value="${user.email}">
+                <input type="text" class="form-control" name="email" id="email" placeholder="${user.email}" value="${user.email}">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">password</label>
-                <input type="text" name="password" id="password" placeholder="${user.password}" value="${user.password}">
+                <input type="text" class="form-control" name="password" id="password" placeholder="${user.password}" value="${user.password}">
             </div>
             <div class="mb-3">
                 <label for="firstName" class="form-label">first name</label>
-                <input type="text" name="firstName" id="firstName" placeholder="${user.firstName}" value="${user.firstName}">
+                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="${user.firstName}" value="${user.firstName}">
             </div>
             <div class="mb-3">
                 <label for="lastName" class="form-label">last name</label>
-                <input type="text" name="lastName" id="lastName" placeholder="${user.lastName}" value="${user.lastName}">
+                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="${user.lastName}" value="${user.lastName}">
             </div>
             <div class="mb-3">
                 <label for="role" class="form-label">role</label>

@@ -7,8 +7,8 @@ import ua.goit.models.Producer;
 import java.util.UUID;
 
 @Service
-public class ProducerService extends BaseService<Producer,Long>{
-    public ProducerService(CrudRepository<Producer, Long> repository) {
+public class ProducerService extends BaseService<Producer,UUID>{
+    public ProducerService(CrudRepository<Producer, UUID> repository) {
         super(repository);
     }
 }

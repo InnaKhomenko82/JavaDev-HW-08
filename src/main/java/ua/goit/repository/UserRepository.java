@@ -5,5 +5,5 @@ import ua.goit.models.User;
 
 import java.util.UUID;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<User, UUID> {
 }

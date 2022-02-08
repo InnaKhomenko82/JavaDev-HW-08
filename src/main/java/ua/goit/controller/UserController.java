@@ -28,7 +28,7 @@ public class UserController {
     @GetMapping({"/{id}"})
     public ModelAndView findById
             (@PathVariable(required = false, name = "id")
-                     Long id, ModelAndView model){
+                     UUID id, ModelAndView model){
         Optional<User> user = userService.findById(id);
         model.addObject("user", user.get());
         model.setViewName("user/user");
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping("delete={id}")
-    public RedirectView delete(@PathVariable Long id){
+    public RedirectView delete(@PathVariable UUID id){
         userService.deleteById(id);
         return new RedirectView("");
     }

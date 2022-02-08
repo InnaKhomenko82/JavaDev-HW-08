@@ -5,5 +5,5 @@ import ua.goit.models.Product;
 
 import java.util.UUID;
 
-public interface ProductRepository extends CrudRepository<Product, Long> {
+public interface ProductRepository extends CrudRepository<Product, UUID> {
 }

@@ -31,7 +31,7 @@ public class ProductController {
     @GetMapping({"/{id}"})
     public ModelAndView findById
             (@PathVariable(required = false, name = "id")
-                     Long id, ModelAndView model){Optional<Product> product = productService.findById(id);
+                     UUID id, ModelAndView model){Optional<Product> product = productService.findById(id);
             model.addObject("product", product.get());
             model.addObject("listProducer",producerService.findAll());
             model.setViewName("product/product");
@@ -53,7 +53,7 @@ public class ProductController {
     }
 
     @GetMapping("delete={id}")
-    public RedirectView delete(@PathVariable Long id){
+    public RedirectView delete(@PathVariable UUID id){
         productService.deleteById(id);
         return new RedirectView("");
     }
