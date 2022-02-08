@@ -4,14 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-import ua.goit.models.Role;
 import ua.goit.models.User;
 import ua.goit.service.UserService;
-import ua.goit.utils.HandleBodyUtil;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -45,21 +42,12 @@ public class UserController {
         return model;
     }
 
-    @PostMapping
-    public RedirectView post(HttpServletRequest req) throws IOException {
-        System.out.println("post");
-        HandleBodyUtil.getModelFromStream(req.getInputStream(), User.class)
-                .ifPresent(userService::save);
-        return new RedirectView("user/users");
+    @PostMapping({"new", "/{id}"})
+    public RedirectView post(@ModelAttribute ("user") User user) {
+        userService.save(user);
+        return new RedirectView("");
     }
 
-    @PutMapping("/{id}")
-    public RedirectView put(HttpServletRequest req, @PathVariable Long id) throws IOException {
-        System.out.println("put");
-        HandleBodyUtil.getModelFromStream(req.getInputStream(), User.class)
-                .ifPresent(userService::save);
-        return new RedirectView("user/users");
-    }
     @GetMapping("delete={id}")
     public RedirectView delete(@PathVariable Long id){
         userService.deleteById(id);

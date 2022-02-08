@@ -4,8 +4,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import ua.goit.models.Product;
 
+import java.util.UUID;
+
 @Service
-public class ProductService extends BaseService<Product,Long>{
+public class ProductService extends BaseService<Product, Long>{
 
     public ProductService(CrudRepository<Product, Long> repository) {
         super(repository);

@@ -5,8 +5,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.goit.models.User;
 
+import java.util.UUID;
+
 @Service
-public class UserService extends BaseService<User,Long>{
+public class UserService extends BaseService<User, Long>{
 
     private final BCryptPasswordEncoder encoder;
 

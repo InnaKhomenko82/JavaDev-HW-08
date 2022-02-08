@@ -7,12 +7,10 @@ import org.springframework.web.servlet.view.RedirectView;
 import ua.goit.models.Product;
 import ua.goit.service.ProducerService;
 import ua.goit.service.ProductService;
-import ua.goit.utils.HandleBodyUtil;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
@@ -48,20 +46,10 @@ public class ProductController {
         return model;
     }
 
-    @PostMapping
-    public RedirectView post(HttpServletRequest req) throws IOException {
-        System.out.println("post");
-        HandleBodyUtil.getModelFromStream(req.getInputStream(), Product.class)
-                .ifPresent(productService::save);
-        return new RedirectView("producer/producers");
-    }
-
-    @PutMapping("/{id}")
-    public RedirectView put(HttpServletRequest req, @PathVariable Long id) throws IOException {
-        System.out.println("put");
-        HandleBodyUtil.getModelFromStream(req.getInputStream(), Product.class)
-                .ifPresent(productService::save);
-        return new RedirectView("product/products");
+    @PostMapping({"new", "/{id}"})
+    public RedirectView post(@ModelAttribute ("product") Product product) {
+        productService.save(product);
+        return new RedirectView("");
     }
 
     @GetMapping("delete={id}")

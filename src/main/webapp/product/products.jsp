@@ -19,6 +19,7 @@
                 <th scope="col">name</th>
                 <th scope="col">price</th>
                 <th scope="col">producer</th>
+                <th scope="col">action</th>
             </tr>
             </thead>
             <tbody>
@@ -46,8 +47,6 @@
             </div>
         </div>
     </div>
-
 </div>
-
 </body>
 </html>
